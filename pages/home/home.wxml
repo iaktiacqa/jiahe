@@ -1,0 +1,23 @@
+<!--pages/home/home.wxml-->
+<view class="home_wrapper">
+  <view class="y_and_m_wrapper">
+    <text class="y_and_m">2018年 1月</text>
+  </view>
+  <view class="week_wrapper">
+    <block  wx:for="{{weekArr}}">
+      <text class="week">{{weekArr[index]}}</text>
+    </block>
+  </view>
+
+  <view class="date_view">
+    <block wx:for="{{dateLines}}" wx:for-index="lineIndex">
+      <view class="line_wrapper">
+        <block wx:for="{{7}}" wx:for-index="coluIndex">
+          <view class="date_wrapper">
+            <text class="date_yangli">{{(lineIndex * 7 + coluIndex + 1) > 31 ? ((lineIndex * 7 + coluIndex + 1) % 31) : (lineIndex * 7 + coluIndex + 1)}}</text>
+          </view>
+        </block>
+      </view>
+    </block>
+  </view>
+</view>
