@@ -1,16 +1,40 @@
 /* pages/home/home.wxss */
 .y_and_m_wrapper {
   display: flex;
+  width: 100%;
   flex-direction: row;
+  justify-content: center;
   align-items: center;
   background: rgb(203, 13,57);
   height: 80rpx;
 
 }
-.y_and_m {
-  font-size: 32rpx;
+.pre_month {
+  font-size: 28rpx;
   color: #fff;
-  margin-left: 40rpx;
+  border: 1px #fff solid;
+  border-radius: 8rpx;
+  padding: 4rpx 10rpx;  
+}
+.y_and_m {
+  font-size: 36rpx;
+  color: #fff;
+  margin: 0 40rpx;
+}
+.next_month {
+  font-size: 28rpx;
+  color: #fff;
+  border: 1px #fff solid;
+  border-radius: 8rpx;
+  padding: 4rpx 10rpx; 
+}
+.now {
+  margin-left: 50rpx;
+  font-size: 28rpx;
+  color: #fff;
+  border: 1px #fff solid;
+  border-radius: 8rpx;
+  padding: 4rpx 10rpx; 
 }
 .week_wrapper {
   height: 100rpx;
@@ -44,6 +68,12 @@
   align-items: center;
   margin: 28rpx 0;
 }
+.now_date {
+  background: rgb(203, 13,57);
+  border-radius: 50%;
+  width: 40rpx;
+  height: 40rpx;
+}
 .date_yangli {
-
+  font-size: 32rpx;
 }
