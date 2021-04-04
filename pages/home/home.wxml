@@ -1,10 +1,10 @@
 <!--pages/home/home.wxml-->
-<view class="home_wrapper">
+<view class="home_wrapper" bindtouchmove="handletouchmove" bindtouchstart = "handletouchtart">
   <view class="y_and_m_wrapper">
-    <text class="pre_month" bindtap="preMonth">上一月</text>
+    <text wx:if="{{false}}" class="pre_month" bindtap="preMonth">上一月</text>
     <text class="y_and_m">{{year}}年{{month < 10? '0' + month:month}}月</text>
-    <text class="next_month" bindtap="nextMonth">下一月</text>
-    <text wx:if="{{false}}" class="now" bindtap="nextMonth">今天</text>
+    <text wx:if="{{false}}" class="next_month" bindtap="nextMonth">下一月</text>
+    <text class="now" bindtap="goNow">今天</text>
   </view>
   <view class="week_wrapper">
     <block wx:for="{{weekArr}}">
@@ -17,7 +17,9 @@
       <view class="line_wrapper">
         <block wx:for="{{7}}" wx:for-index="coluIndex">
           <view class="date_wrapper">
-            <text wx:if="{{(lineIndex * 7 + coluIndex >= startIndex)  && (lineIndex * 7 + coluIndex + 1 - startIndex <= curMonthDays)}}" class="{{dateArr[lineIndex * 7 + coluIndex - startIndex].isNow?'now_date':''}}">{{lineIndex * 7 + coluIndex + 1 - startIndex}}</text>
+            <text wx:if="{{dateArr[lineIndex * 7 + coluIndex - startIndex].birthday == null && (lineIndex * 7 + coluIndex >= startIndex)  && (lineIndex * 7 + coluIndex + 1 - startIndex <= curMonthDays)}}" class="date_yangli {{dateArr[lineIndex * 7 + coluIndex - startIndex].isNow?'now_date':''}}">{{lineIndex * 7 + coluIndex + 1 - startIndex}}</text>
+            <image wx:if="{{dateArr[lineIndex * 7 + coluIndex - startIndex].birthday}}" class="birthday_img" src="{{dateArr[lineIndex * 7 + coluIndex - startIndex].birthday.avatar}}"></image>
+            <text class="date_yinli {{dateArr[lineIndex * 7 + coluIndex - startIndex].yinli.isFirst?'yinli_red':''}}">{{dateArr[lineIndex * 7 + coluIndex - startIndex].yinli.showtext}}</text>
           </view>
         </block>
       </view>

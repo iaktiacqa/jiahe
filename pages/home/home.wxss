@@ -1,41 +1,53 @@
 /* pages/home/home.wxss */
+
 .y_and_m_wrapper {
   display: flex;
   width: 100%;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background: rgb(203, 13,57);
-  height: 80rpx;
-
+  background: rgb(203, 13, 57);
+  height: 100rpx;
 }
+
 .pre_month {
-  font-size: 28rpx;
+  font-size: 32rpx;
   color: #fff;
   border: 1px #fff solid;
   border-radius: 8rpx;
-  padding: 4rpx 10rpx;  
+  padding: 4rpx 10rpx;
 }
+
 .y_and_m {
-  font-size: 36rpx;
+  font-size: 40rpx;
   color: #fff;
   margin: 0 40rpx;
 }
+
 .next_month {
-  font-size: 28rpx;
+  font-size: 32rpx;
   color: #fff;
   border: 1px #fff solid;
   border-radius: 8rpx;
-  padding: 4rpx 10rpx; 
+  padding: 4rpx 10rpx;
 }
+
 .now {
-  margin-left: 50rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 60rpx;
+  height: 60rpx;
+  position: absolute;
+  right: 0;
+  margin-right: 30rpx;
   font-size: 28rpx;
   color: #fff;
   border: 1px #fff solid;
-  border-radius: 8rpx;
-  padding: 4rpx 10rpx; 
+  border-radius: 50%;
 }
+
 .week_wrapper {
   height: 100rpx;
   width: 100%;
@@ -45,12 +57,13 @@
   justify-content: space-between;
   align-items: center;
 }
+
 .week {
-  flex:1;
+  flex: 1;
   display: flex;
   justify-content: center;
-  font-size:28rpx;
-  color: rgb(192,194,195)
+  font-size: 28rpx;
+  color: rgb(192, 194, 195);
 }
 
 .line_wrapper {
@@ -60,6 +73,7 @@
   justify-content: space-between;
   flex-direction: row;
 }
+
 .date_wrapper {
   flex: 1;
   display: flex;
@@ -69,8 +83,23 @@
   padding-bottom: 28rpx;
   padding-top: 10rpx;
 }
+
+.date_yangli {
+  font-size: 32rpx;
+  width: 90rpx;
+  height: 90rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.birthday_img {
+  width: 90rpx;
+  height: 90rpx;
+    border-radius: 50%;
+}
 .now_date {
-  background: rgb(203, 13,57);
+  background: rgb(203, 13, 57);
   border-radius: 50%;
   width: 90rpx;
   height: 90rpx;
@@ -79,9 +108,17 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  color: #fff;
 }
-.date_yangli {
-  font-size: 32rpx;
-  width: 90rpx;
-  height: 90rpx;
+
+.date_yinli {
+  font-size: 26rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: rgb(226, 226, 226)
+}
+.yinli_red {
+  color: rgb(203, 13, 57);
 }

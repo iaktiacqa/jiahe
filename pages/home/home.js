@@ -1,4 +1,5 @@
 // pages/home/home.js
+var dateUtil = require('date.js')
 Page({
 
   /**
@@ -13,9 +14,43 @@ Page({
     year: 0,
     month: 0,
     date: 0,
+    day: 0,
     nowYear: 0,
     nowMonth: 0,
-    nowDate: 0
+    nowDate: 0,
+    lastX: 0,
+    lastY:0,
+    moveSwitch: false,
+  },
+  handletouchmove:function(event) {
+    if (!this.data.moveSwitch) {
+      return;
+    }
+    console.log('handletouchmove');
+    let currentX = event.touches[0].pageX
+    let currentY = event.touches[0].pageY
+    if ((currentX - this.data.lastX) < -20 || (currentY - this.data.lastY)<-20 ) {
+      this.setData({
+        moveSwitch: false,
+      })
+      this.nextMonth();
+    } else if (((currentX - this.data.lastX) > 20) ||(currentY - this.data.lastY) > 20) {
+      this.setData({
+        moveSwitch: false,
+      })
+      this.preMonth();
+    }
+    this.setData({
+      lastX: currentX,
+      lastY: currentY
+    })
+  },
+  handletouchtart: function (event) {
+    this.setData({
+      moveSwitch: true,
+      lastX: event.touches[0].pageX,
+      lastY: event.touches[0].pageY
+    })
   },
 
   /**
@@ -23,6 +58,9 @@ Page({
    */
   onLoad: function (options) {
     // 初始化当前日期
+    //this.initNowDate();
+  },
+  onShow: function (options) {
     this.initNowDate();
   },
   /**
@@ -40,6 +78,9 @@ Page({
       nowDate: curDate.getDate(),
     })
     this.getDateArr(curDate.getFullYear(), curDate.getMonth() + 1);
+  },
+  goNow: function() {
+    this.initNowDate();
   },
   /**
    * 上一个月
@@ -100,25 +141,126 @@ Page({
     var curDateArr = [];
     // 构造数据
     for (var i = 1; i <= curMonthDays; i++) {
-      console.log(this.data.nowDate)
-      if (year === this.data.nowYear
-        && month === this.data.nowMonth
-        && i === this.data.nowDate) {
-        curDateArr.push({
-          yangli: i,
-          isNow: true
-        })
+      // 农历月日
+      var ylMonthAndDate = dateUtil.GetLunarDay(year, month, i);
+      var ylMonth = ylMonthAndDate.split('-')[0];
+      var ylDate = ylMonthAndDate.split('-')[1];
+      var date = {};
+      date['yangli'] = i;
+      // 得到农历，这里是一个对象
+      date['yinli'] = this.processYinliDate(ylMonth, ylDate);
+      // 判断是不是今天
+      if (this.isNow(year, month, i)) {
+        date['isNow'] = true;
       } else {
-        curDateArr.push({
-          yangli: i,
-          isNow: false
-        })
+        date['isNow'] = false;
       }
+      // 判断有没有生日
+      var birthday = this.hasBirthday(ylMonth, ylDate);
+      if (birthday) {
+        date['birthday'] = birthday;
+      }
+      curDateArr.push(date);
     }
     this.setData({
       dateArr: curDateArr
     })
-    console.log(this.data)
+    //console.log(this.data)
+  },
+  /**
+   * 处理农历
+   */
+  processYinliDate(ylMonth, ylDate) {
+    var yinli = {};
+    yinli['showtext'] = ylDate;
+    if (ylDate === '初一') {
+      if (ylMonth === '正月') {
+        yinli['showtext'] = '春节';
+      } else {
+        yinli['showtext'] = ylMonth;
+      }
+      yinli['isFirst'] = true;
+    }
+    return yinli;
+  },
+  /**
+   * 判断是不是今天
+   */
+  isNow: function (year, month, date) {
+    if (year === this.data.nowYear
+      && month === this.data.nowMonth
+      && date === this.data.nowDate) {
+        return true;
+    } else {
+      return false;
+    }
+  },
+  /**
+   * 判断有没有生日(暂时支持只农历)
+   */
+  hasBirthday: function (ylmonth, ylday) {
+    var birthdayArr = [
+      {
+        'month':12,
+        'date':11,
+        'isYinLi': true,
+        'name':'唐江玲',
+        'nickname': '姐',
+        'avatar': '/images/jiejie.jpg',
+        'phone': '18075778126'
+      },
+      {
+        'month': 3,
+        'date': 12,
+        'isYinLi': true,
+        'name': '唐国元',
+        'nickname': '爸',
+        'avatar': '/images/ba.jpg',
+        'phone': '17707737661'
+      },
+      {
+        'month': 9,
+        'date': 4,
+        'isYinLi': true,
+        'name': '唐仕云',
+        'nickname': '妈',
+        'avatar': '/images/ma.jpg',
+        'phone': '15878351921'
+      },
+      {
+        'month': 8,
+        'date': 4,
+        'isYinLi': true,
+        'name': '唐江旭',
+        'nickname': '我',
+        'avatar': '/images/wo.jpg',
+        'phone': '15021016721'
+      },
+      {
+        'month': 3,
+        'date': 10,
+        'isYinLi': true,
+        'name': '罗艳文',
+        'nickname': '姐夫',
+        'avatar': '/images/jiefu.jpg',
+        'phone': '17358806816'
+      }
+
+    ];
+    var monthArr = ['正月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月','冬月', '腊月'];
+    
+    var dateArr = ['初一', '初二', '初三', '初四', '初五', '初六', '初七', '初八', '初九', '初十',
+      '十一', '十二', '十三', '十四', '十五', '十六', '十七', '十八', '十九', '廿',
+      '廿一', '廿二', '廿三', '廿四', '廿五', '廿六', '廿七', '廿八', '廿九', '三十',]
+    var month = monthArr.indexOf(ylmonth) + 1;
+    var date = dateArr.indexOf(ylday) + 1;
+    for (var i = 0; i < birthdayArr.length;i++) {
+      var birthday = birthdayArr[i];
+      if (birthday.month === month && birthday.date === date) {
+        return birthday;
+      }
+    }
+
   },
   /**
    * 得到一个月开始的天数
@@ -162,52 +304,9 @@ Page({
     }
   },
   /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
 
-  }
-
+  },
 })
