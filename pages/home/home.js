@@ -13,8 +13,8 @@ Page({
     year: 0,
     month: 0,
     date: 0,
-    nowYear:0,
-    nowMonth:0,
+    nowYear: 0,
+    nowMonth: 0,
     nowDate: 0
   },
 
@@ -44,14 +44,14 @@ Page({
   /**
    * 上一个月
    */
-  preMonth: function() {
+  preMonth: function () {
     var curMonth = this.data.month
-    if ( curMonth > 1) {
+    if (curMonth > 1) {
       this.setData({
         month: curMonth - 1
       })
       this.getDateArr(this.data.year, this.data.month);
-    } else if (curMonth === 1){
+    } else if (curMonth === 1) {
       var curYear = this.data.year;
       this.setData({
         month: 12,
@@ -79,14 +79,14 @@ Page({
       this.getDateArr(this.data.year, this.data.month);
     }
   },
-/**
- * 得到当前月的日期数组
- */
-  getDateArr: function(year, month) {
+  /**
+   * 得到当前月的日期数组
+   */
+  getDateArr: function (year, month) {
     // 一个月的总天数
     var curMonthDays = this.getCurMonthDays(year, month);
     // 开始的天数, 0 开始
-    var startIndex = this.getStartIndex(year, month) - 1 ;
+    var startIndex = this.getStartIndex(year, month) - 1;
     // 需要总共的行数，5或6
     var dateLines = 5;
     if (curMonthDays + startIndex > 35) {
@@ -99,10 +99,10 @@ Page({
     })
     var curDateArr = [];
     // 构造数据
-    for (var i = 1; i <= curMonthDays; i++){
+    for (var i = 1; i <= curMonthDays; i++) {
       console.log(this.data.nowDate)
-      if (year === this.data.nowYear 
-        && month === this.data.nowMonth 
+      if (year === this.data.nowYear
+        && month === this.data.nowMonth
         && i === this.data.nowDate) {
         curDateArr.push({
           yangli: i,
@@ -136,7 +136,11 @@ Page({
    */
   getCurMonthDays: function (year, month) {
     if (month === 2) {
-      return 28;
+      if (this.isLeap(year)) {
+        return 29;
+      } else {
+        return 28;
+      }
     } else if (month === 1 || month === 2
       || month === 3 || month === 5
       || month === 7 || month === 8
@@ -146,54 +150,64 @@ Page({
       return 30;
     }
   },
-
+  /**
+   * 是否是闰年
+   */
+  isLeap: function (year) {
+    if ((year % 4 === 0 && year % 100 !== 0)
+      || (year % 400 === 0)) {
+      return true;
+    } else {
+      return false;
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+
   }
 
 })

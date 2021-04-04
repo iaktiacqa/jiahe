@@ -66,14 +66,22 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 28rpx 0;
+  padding-bottom: 28rpx;
+  padding-top: 10rpx;
 }
 .now_date {
   background: rgb(203, 13,57);
   border-radius: 50%;
-  width: 40rpx;
-  height: 40rpx;
+  width: 90rpx;
+  height: 90rpx;
+  font-size: 32rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 .date_yangli {
   font-size: 32rpx;
+  width: 90rpx;
+  height: 90rpx;
 }

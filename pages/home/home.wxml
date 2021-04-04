@@ -4,19 +4,19 @@
     <text class="pre_month" bindtap="preMonth">上一月</text>
     <text class="y_and_m">{{year}}年{{month < 10? '0' + month:month}}月</text>
     <text class="next_month" bindtap="nextMonth">下一月</text>
-    <text wx:if="{{false}}"class="now" bindtap="nextMonth">今天</text>
+    <text wx:if="{{false}}" class="now" bindtap="nextMonth">今天</text>
   </view>
   <view class="week_wrapper">
-    <block  wx:for="{{weekArr}}">
+    <block wx:for="{{weekArr}}">
       <text class="week">{{weekArr[index]}}</text>
     </block>
   </view>
 
   <view class="date_view">
     <block wx:for="{{dateLines}}" wx:for-index="lineIndex">
-      <view class="line_wrapper" >
+      <view class="line_wrapper">
         <block wx:for="{{7}}" wx:for-index="coluIndex">
-          <view class="date_wrapper" >
+          <view class="date_wrapper">
             <text wx:if="{{(lineIndex * 7 + coluIndex >= startIndex)  && (lineIndex * 7 + coluIndex + 1 - startIndex <= curMonthDays)}}" class="{{dateArr[lineIndex * 7 + coluIndex - startIndex].isNow?'now_date':''}}">{{lineIndex * 7 + coluIndex + 1 - startIndex}}</text>
           </view>
         </block>
