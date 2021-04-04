@@ -7,7 +7,7 @@
   justify-content: center;
   align-items: center;
   background: rgb(203, 13, 57);
-  height: 100rpx;
+  height: 90rpx;
 }
 
 .pre_month {
@@ -81,7 +81,6 @@
   justify-content: center;
   align-items: center;
   padding-bottom: 28rpx;
-  padding-top: 10rpx;
 }
 
 .date_yangli {
@@ -94,15 +93,15 @@
   align-items: center;
 }
 .birthday_img {
-  width: 90rpx;
-  height: 90rpx;
-    border-radius: 50%;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
 }
 .now_date {
   background: rgb(203, 13, 57);
   border-radius: 50%;
-  width: 90rpx;
-  height: 90rpx;
+  width: 80rpx;
+  height: 80rpx;
   font-size: 32rpx;
   display: flex;
   flex-direction: row;
@@ -120,5 +119,65 @@
   color: rgb(226, 226, 226)
 }
 .yinli_red {
+  color: rgb(203, 13, 57);
+}
+.hor_line{
+  height: 0.5px;
+  width: 100%;
+  background: rgb(226, 226, 226);
+}
+.other_birthday_view {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.other_birthday_avatar_wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center
+}
+.other_birthday_avatar {
+  width: 100rpx;
+  height: 100rpx;
+  margin: 10rpx 80rpx;
+  border-radius: 50%;
+}
+.other_birthday_title{
+  color: rgb(203, 13, 57);
+  font-size: 32rpx;
+}
+.other_phone_wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10rpx;
+}
+.other_phone_title {
+  font-size: 32rpx;
+  color: rgb(139, 194, 101)
+}
+.other_phone {
+  font-size: 32rpx;
+  color: rgb(203, 13, 57);
+}
+
+.other_jiyu_wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10rpx;
+}
+.other_jiyu_title {
+  font-size: 32rpx;
+  color: rgb(139, 194, 101)
+}
+.other_jiyu {
+  font-size: 32rpx;
   color: rgb(203, 13, 57);
 }

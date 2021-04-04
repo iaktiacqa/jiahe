@@ -19,22 +19,50 @@ Page({
     nowMonth: 0,
     nowDate: 0,
     lastX: 0,
-    lastY:0,
+    lastY: 0,
     moveSwitch: false,
+    other: {}
   },
-  handletouchmove:function(event) {
+  // 拨打电话
+  call: function(event) {
+    var phone = event.currentTarget.dataset.phone;
+    wx.makePhoneCall({
+      phoneNumber: phone
+    })
+  },
+  // 选择了日期
+  clickDate: function (event) {
+    //日期数据
+    var dateIndex = event.currentTarget.dataset.dateIndex;
+    var curDate = this.data.dateArr[dateIndex];
+    var birthday = this.hasBirthday(curDate.yinli.month, curDate.yinli.date);
+    if (birthday) {
+      // 如果有生日
+      this.setData({
+        other: {
+          'type': 'birthday',
+          'birthday': birthday
+        }
+      })
+    } else {
+      this.setData({
+        other: {}
+      })
+    }
+    // console.log(birthday);
+  },
+  handletouchmove: function (event) {
     if (!this.data.moveSwitch) {
       return;
     }
-    console.log('handletouchmove');
     let currentX = event.touches[0].pageX
     let currentY = event.touches[0].pageY
-    if ((currentX - this.data.lastX) < -20 || (currentY - this.data.lastY)<-20 ) {
+    if ((currentX - this.data.lastX) < -20 || (currentY - this.data.lastY) < -20) {
       this.setData({
         moveSwitch: false,
       })
       this.nextMonth();
-    } else if (((currentX - this.data.lastX) > 20) ||(currentY - this.data.lastY) > 20) {
+    } else if (((currentX - this.data.lastX) > 20) || (currentY - this.data.lastY) > 20) {
       this.setData({
         moveSwitch: false,
       })
@@ -79,13 +107,16 @@ Page({
     })
     this.getDateArr(curDate.getFullYear(), curDate.getMonth() + 1);
   },
-  goNow: function() {
+  goNow: function () {
     this.initNowDate();
   },
   /**
    * 上一个月
    */
   preMonth: function () {
+    this.setData({
+      other: {}
+    });
     var curMonth = this.data.month
     if (curMonth > 1) {
       this.setData({
@@ -105,6 +136,9 @@ Page({
    * 下一个月
    */
   nextMonth: function () {
+    this.setData({
+      other: {}
+    });
     var curMonth = this.data.month
     if (curMonth < 12) {
       this.setData({
@@ -146,7 +180,10 @@ Page({
       var ylMonth = ylMonthAndDate.split('-')[0];
       var ylDate = ylMonthAndDate.split('-')[1];
       var date = {};
-      date['yangli'] = i;
+      date['yangli'] = {
+        'date': i,
+        'month': month
+      };
       // 得到农历，这里是一个对象
       date['yinli'] = this.processYinliDate(ylMonth, ylDate);
       // 判断是不是今天
@@ -171,7 +208,10 @@ Page({
    * 处理农历
    */
   processYinliDate(ylMonth, ylDate) {
-    var yinli = {};
+    var yinli = {
+      'date': ylDate,
+      'month': ylMonth
+    };
     yinli['showtext'] = ylDate;
     if (ylDate === '初一') {
       if (ylMonth === '正月') {
@@ -190,7 +230,7 @@ Page({
     if (year === this.data.nowYear
       && month === this.data.nowMonth
       && date === this.data.nowDate) {
-        return true;
+      return true;
     } else {
       return false;
     }
@@ -201,13 +241,14 @@ Page({
   hasBirthday: function (ylmonth, ylday) {
     var birthdayArr = [
       {
-        'month':12,
-        'date':11,
+        'month': 12,
+        'date': 11,
         'isYinLi': true,
-        'name':'唐江玲',
+        'name': '唐江玲',
         'nickname': '姐',
         'avatar': '/images/jiejie.jpg',
-        'phone': '18075778126'
+        'phone': '18075778126',
+        'jiyu': '当然是越来越美啰！'
       },
       {
         'month': 3,
@@ -216,7 +257,8 @@ Page({
         'name': '唐国元',
         'nickname': '爸',
         'avatar': '/images/ba.jpg',
-        'phone': '17707737661'
+        'phone': '17707737661',
+        'jiyu':'祝爸爸身体健康！'
       },
       {
         'month': 9,
@@ -225,7 +267,8 @@ Page({
         'name': '唐仕云',
         'nickname': '妈',
         'avatar': '/images/ma.jpg',
-        'phone': '15878351921'
+        'phone': '15878351921',
+        'jiyu': '祝妈妈身体健康！'
       },
       {
         'month': 8,
@@ -234,7 +277,8 @@ Page({
         'name': '唐江旭',
         'nickname': '我',
         'avatar': '/images/wo.jpg',
-        'phone': '15021016721'
+        'phone': '15021016721',
+        'jiyu': '我自己还没想好！'
       },
       {
         'month': 3,
@@ -243,18 +287,19 @@ Page({
         'name': '罗艳文',
         'nickname': '姐夫',
         'avatar': '/images/jiefu.jpg',
-        'phone': '17358806816'
+        'phone': '17358806816',
+        'jiyu': '祝财源滚进！'
       }
 
     ];
-    var monthArr = ['正月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月','冬月', '腊月'];
-    
+    var monthArr = ['正月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '冬月', '腊月'];
+
     var dateArr = ['初一', '初二', '初三', '初四', '初五', '初六', '初七', '初八', '初九', '初十',
       '十一', '十二', '十三', '十四', '十五', '十六', '十七', '十八', '十九', '廿',
       '廿一', '廿二', '廿三', '廿四', '廿五', '廿六', '廿七', '廿八', '廿九', '三十',]
     var month = monthArr.indexOf(ylmonth) + 1;
     var date = dateArr.indexOf(ylday) + 1;
-    for (var i = 0; i < birthdayArr.length;i++) {
+    for (var i = 0; i < birthdayArr.length; i++) {
       var birthday = birthdayArr[i];
       if (birthday.month === month && birthday.date === date) {
         return birthday;
