@@ -1,13 +1,32 @@
 {
   "pages":[
     "pages/home/home",
+    "pages/usercenter/usercenter",
     "pages/index/index",
     "pages/logs/logs"
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "家和万事兴",
+    "navigationBarTitleText": "家和万事兴！",
     "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "borderStyle": "white",
+    "position": "bottom",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "日历",
+        "iconPath": "/images/yuedu.png",
+        "selectedIconPath": "/images/yuedu_hl.png"
+      },
+      {
+        "pagePath": "pages/usercenter/usercenter",
+        "text": "个人",
+        "iconPath": "/images/dianying.png",
+        "selectedIconPath": "/images/dianying_hl.png"
+      }
+    ]
   }
 }

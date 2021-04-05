@@ -1,5 +1,5 @@
 <!--pages/home/home.wxml-->
-<view class="home_wrapper" bindtouchmove="handletouchmove" bindtouchstart="handletouchtart">
+<view class="home_wrapper" >
   <view class="y_and_m_wrapper">
     <text wx:if="{{false}}" class="pre_month" bindtap="preMonth">上一月</text>
     <text class="y_and_m">{{year}}年{{month < 10? '0' + month:month}}月</text>
@@ -12,7 +12,8 @@
     </block>
   </view>
 
-  <view class="date_view">
+  <view class="date_view" bindtouchmove="handletouchmove" bindtouchstart="handletouchtart">
+  <image class="big_avatar" src="/images/jiejie.jpg"></image>
     <block wx:for="{{dateLines}}" wx:for-index="lineIndex">
       <view class="line_wrapper">
         <block wx:for="{{7}}" wx:for-index="coluIndex">
@@ -28,7 +29,7 @@
 
   <view class="other_view" wx:if="{{other}}">
     <view class="other_birthday_view" wx:if="{{other.type === 'birthday'}}">
-    <view class="hor_line" />
+    <!-- <view class="hor_line" /> -->
       <view class="other_birthday_avatar_wrapper">
         <!-- <text class="other_birthday_title">破蛋日</text> -->
         <image class="other_birthday_avatar" src="{{other.birthday.avatar}}"></image>

@@ -1,0 +1,28 @@
+.container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.userinfo_wrapper {
+    height: 344rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(203, 13, 57);
+}
+.wx_name {
+    margin-top: 30rpx;
+    font-size: 34rpx;
+    color: white;
+}
+.user_avatar {
+    width: 182rpx;
+    height: 182rpx;
+    margin-top: 17rpx;
+    border-radius: 50%;
+}
+.wx_account {
+    font-size: 36rpx;
+    margin-top: 17rpx;
+    color: white;
+}

@@ -57,12 +57,12 @@ Page({
     }
     let currentX = event.touches[0].pageX
     let currentY = event.touches[0].pageY
-    if ((currentX - this.data.lastX) < -20 || (currentY - this.data.lastY) < -20) {
+    if ((currentX - this.data.lastX) < -20) {
       this.setData({
         moveSwitch: false,
       })
       this.nextMonth();
-    } else if (((currentX - this.data.lastX) > 20) || (currentY - this.data.lastY) > 20) {
+    } else if (((currentX - this.data.lastX) > 20)) {
       this.setData({
         moveSwitch: false,
       })
@@ -90,6 +90,20 @@ Page({
   },
   onShow: function (options) {
     this.initNowDate();
+    var birthday = this.hasBirthday('腊月', '十一');
+    if (birthday) {
+      // 如果有生日
+      this.setData({
+        other: {
+          'type': 'birthday',
+          'birthday': birthday
+        }
+      })
+    } else {
+      this.setData({
+        other: {}
+      })
+    }
   },
   /**
    * 初始化当前数据

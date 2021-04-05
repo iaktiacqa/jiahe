@@ -65,6 +65,9 @@
   font-size: 28rpx;
   color: rgb(192, 194, 195);
 }
+.date_view {
+  background-size: 100% auto;
+}
 
 .line_wrapper {
   display: flex;
@@ -80,7 +83,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-bottom: 28rpx;
+  padding-bottom: 20rpx;
 }
 
 .date_yangli {
@@ -116,7 +119,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  color: rgb(226, 226, 226)
+  color: rgb(120, 120, 120)
 }
 .yinli_red {
   color: rgb(203, 13, 57);
@@ -131,7 +134,12 @@
   flex-direction: column;
 }
 
-
+.big_avatar {
+  width: 100%;
+  height: 800rpx;
+  position: fixed;
+  z-index: -100;
+}
 .other_birthday_avatar_wrapper {
   display: flex;
   flex-direction: row;
@@ -149,7 +157,6 @@
   font-size: 32rpx;
 }
 .other_phone_wrapper {
-  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -166,7 +173,6 @@
 }
 
 .other_jiyu_wrapper {
-  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;

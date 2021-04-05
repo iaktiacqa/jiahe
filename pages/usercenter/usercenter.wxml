@@ -1,0 +1,7 @@
+<view class="container">
+    <view class="userinfo_wrapper">
+        <text class="wx_name">{{userInfo.nickName?userInfo.nickName:"游客"}}</text>
+        <image src="{{userInfo.avatarUrl}}" class="user_avatar"/>
+        <text wx:if="{{false}}" class="wx_phone">15021016721</text>
+    </view>
+</view>
