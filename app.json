@@ -1,9 +1,8 @@
 {
   "pages":[
-    "pages/home/home",
+    "pages/date/date",
     "pages/usercenter/usercenter",
-    "pages/index/index",
-    "pages/logs/logs"
+    "pages/home/home"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -16,7 +15,7 @@
     "position": "bottom",
     "list": [
       {
-        "pagePath": "pages/home/home",
+        "pagePath": "pages/date/date",
         "text": "日历",
         "iconPath": "/images/yuedu.png",
         "selectedIconPath": "/images/yuedu_hl.png"
