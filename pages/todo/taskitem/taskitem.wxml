@@ -1,0 +1,18 @@
+<template name="taskItem">
+  <view class="task_item_wrapper">
+    <text class="start_task" wx:if="{{status==1}}" catchtap='startTask' data-task-id="{{id}}" >开始</text>
+    <text class="start_task" wx:elif="{{status==2}}" catchtap='finishedTask' data-task-id="{{id}}" >完成</text>
+    <text wx:if="{{gender==1}}" class="gender_1">紧急</text>
+    <text wx:elif="{{gender==2}}" class="gender_2">优先</text>
+    <text wx:elif="{{gender==3}}" class="gender_3">一般</text>
+    <view class="name_desc_wrapper">
+      <text class="task_name">{{name}}</text>
+      <text class="task_desc">{{desc}}</text>
+    </view>
+    <view class="time_and_finished_wrapper">
+      <text class="finished_date" wx:if="{{taskType==1}}">{{finishedDate}}</text>
+      <text class="finished_date" wx:elif="{{taskType==2}}">每天任务</text>
+      <text class="finished_time">{{finishedTime}}</text>
+    </view>
+  </view>
+</template>

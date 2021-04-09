@@ -1,0 +1,74 @@
+/* pages/todo/todo.wxss */
+@import "taskitem/taskitem.wxss";
+
+.todo-view {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+
+.add_task_wrapper {
+  position: absolute;
+  right: 40rpx;
+  bottom: 150rpx;
+  z-index: 1000;
+  width: 80rpx;
+  height: 80rpx;
+  background: #1aad19;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.add_task {
+  font-size: 60rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  margin-bottom: 10rpx;
+  color: #fff;
+  z-index: 1000;
+}
+
+.status_wrapper {
+  display: flex;
+  justify-content: space-around;
+  color: #777;
+  font-size: 30rpx;
+  background: #fafafa;
+}
+
+.status_tab_wrapper {
+  flex: 1;
+  padding: 20rpx 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.select-status-wrapper {
+  border-bottom: #148af7 1px solid;
+}
+
+.select-status {
+  color: #148af7;
+}
+
+.task_swiper {
+  width: 100%;
+  flex: 1;
+}
+
+.no_task_wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 100rpx 0;
+}
+
+.no_task {
+  font-size: 34rpx;
+  color: #666;
+}

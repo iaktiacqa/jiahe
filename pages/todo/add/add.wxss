@@ -1,0 +1,121 @@
+/* pages/todo/add/add.wxss */
+
+.add_view {
+  padding: 100rpx 80rpx;
+}
+
+.task_name_wrapper {
+  display: flex;
+  flex-direction: row;
+  padding: 20rpx 0;
+}
+
+.task_name_title {
+  font-size: 34rpx;
+}
+
+.task_name {
+  flex: 1;
+  font-size: 34rpx;
+}
+
+.task_desc_wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 30rpx 0;
+}
+
+.task_desc_title {
+  font-size: 34rpx;
+}
+
+.task_desc {
+  width: 490rpx;
+  padding: 10rpx;
+  border: rgb(180, 180, 180) 1px solid;
+  border-radius: 5rpx;
+  margin-top: 10rpx;
+  margin-left: 80rpx;
+  font-size: 34rpx;
+}
+
+.gender_wrapper {
+  font-size: 34rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 30rpx 0;
+}
+
+.task_type_wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 30rpx 0;
+}
+
+.task_type {
+  font-size: 34rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.everyday_wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.finished_time_wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 34rpx;
+  margin-top: 30rpx;
+}
+
+.picker {
+  display: flex;
+  flex-direction: row;
+  font-size: 34rpx;
+}
+
+.date_title {
+  color: rgb(180, 180, 180);
+}
+
+.time_title {
+  color: rgb(180, 180, 180);
+}
+
+.finished_date {
+  margin-left: 10rpx;
+  border-bottom: 1rpx rgb(180, 180, 180) solid;
+}
+
+.finished_time {
+  margin-left: 10rpx;
+  margin-right: 20rpx;
+  border-bottom: 1rpx rgb(180, 180, 180) solid;
+}
+
+.finished_wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 30rpx 0;
+}
+
+.finished_title {
+  font-size: 34rpx;
+}
+
+.submit_btn {
+  height: 100rpx;
+  margin: 30rpx 0;
+}
+
+.hor_line {
+  height: 0.5rpx;
+  width: 100%;
+  background: rgb(180, 180, 180);
+}

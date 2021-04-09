@@ -1,0 +1,39 @@
+<!--pages/todo/todo.wxml-->
+<import src="taskitem/taskitem.wxml" />
+<view class="todo-view">
+  <view class="add_task_wrapper" bindtap='addTask'>
+    <text class="add_task">+</text>
+  </view>
+  <view class="status_wrapper">
+    <view class="status_tab_wrapper {{curStatus==statusArr[index].type?'select-status-wrapper':''}}" wx:for="{{statusArr}}" bindtap='selectStatus' data-status-id="{{statusArr[index].type}}">
+      <text class="{{curStatus==statusArr[index].type?'select-status':''}}">{{statusArr[index].name}}</text>
+    </view>
+  </view>
+
+  <swiper class="task_swiper" bindchange="swiperStatus" current="{{curStatus-1}}">
+    <swiper-item>
+      <view class="no_task_wrapper" wx:if="{{!taskData.todoList || taskData.todoList.length <= 0}}">
+        <text class="no_task">没有待完成的任务，快去创建吧！</text>
+      </view>
+      <view wx:for="{{taskData.todoList}}" wx:for-item="task" bindtap='goDetail' data-task-id="{{task.id}}">
+        <template is="taskItem" data="{{...task}}" />
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <view class="no_task_wrapper" wx:if="{{!taskData.finishingList || taskData.finishingList.length <= 0}}">
+        <text class="no_task">没有进行中的任务，先去开始吧！</text>
+      </view>
+      <view wx:for="{{taskData.finishingList}}" wx:for-item="task" bindtap='goDetail' data-task-id="{{task.id}}">
+        <template is="taskItem" data="{{...task}}" />
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <view class="no_task_wrapper" wx:if="{{!taskData.finishedList || taskData.finishedList.length <= 0}}">
+        <text class="no_task">没有已完成的任务，快去完成吧！</text>
+      </view>
+      <view wx:for="{{taskData.finishedList}}" wx:for-item="task" bindtap='goDetail' data-task-id="{{task.id}}">
+        <template is="taskItem" data="{{...task}}" />
+      </view>
+    </swiper-item>
+  </swiper>
+</view>
