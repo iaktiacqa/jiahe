@@ -10,10 +10,10 @@
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#CB0D39",
     "navigationBarTitleText": "家和万事兴！",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle":"white"
   },
   "tabBar": {
-    "borderStyle": "white",
+    "borderStyle": "#dddddd",
     "position": "bottom",
     "list": [
       {

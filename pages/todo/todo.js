@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    curStatus: 2,
+    scrollviewHeight: 0,
+    curStatus: 1,
     taskData: {},
     text: 'test',
     statusArr: [
@@ -26,7 +27,7 @@ Page({
   },
   addTask: function () {
     wx.navigateTo({
-      url: '/pages/todo/add/add'
+      url: '/pages/todo/add/add?action=add'
     })
   },
   selectStatus: function (e) {
@@ -39,6 +40,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
+    wx.getSystemInfo({
+      success: function(res) {
+        var windowHeight = res.windowHeight;
+        var windowWidth = res.windowWidth;
+        console.log(windowHeight + ' - ' + windowWidth)
+        that.setData({
+          scrollviewHeight: windowHeight - 84 * windowWidth / 750.0
+        })
+        console.log(that.data.scrollviewHeight);
+      },
+    })
     var taskData = wx.getStorageSync('taskData');
     this.setData({
       taskData: taskData

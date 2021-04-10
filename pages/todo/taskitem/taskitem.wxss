@@ -4,17 +4,6 @@
   border-bottom: #ddd 1px solid;
 }
 
-.start_task {
-  position: absolute;
-  right: 0;
-  margin-right: 30rpx;
-  background: #1aad19;
-  font-size: 40rpx;
-  color: #fff;
-  padding: 10rpx 20rpx;
-  border-radius: 10rpx;
-  margin-top: 40rpx;
-}
 
 .gender_1, .gender_2, .gender_3 {
   position: absolute;
@@ -34,20 +23,46 @@
 .gender_3 {
   background: #ff9501;
 }
-
-.name_desc_wrapper {
+.item_top_wrapper {
   display: flex;
   flex-direction: row;
-  padding: 0 40rpx;
   align-items: center;
+}
+.name_desc_wrapper {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 0 40rpx;
   margin-top: 40rpx;
   margin-bottom: 10rpx;
+}
+.start_task {
+  height: 50rpx;
+  margin-right: 30rpx;
+  background: #1aad19;
+  font-size: 34rpx;
+  color: #fff;
+  padding: 10rpx 20rpx;
+  border-radius: 10rpx;
+}
+.score {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background: #1aad19;
+  width: 80rpx;
+  height: 80rpx;
+  padding: 10rpx;
+  font-size: 40rpx;
+  margin-right: 30rpx;
+  border-radius: 50%;
+  color: #cb0d39;
 }
 
 .task_desc {
   flex: 1;
   font-size: 30rpx;
-  margin-left: 20rpx;
   color: #666;
 }
 
@@ -60,4 +75,40 @@
 
 .finished_time {
   margin-left: 20rpx;
+}
+
+.doing_time_and_finished_wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 0 40rpx;
+  font-size: 34rpx;
+  color: #666;
+  margin-bottom: 20rpx;
+  margin-top: 10rpx;
+}
+
+.doing_start_wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.start_time {
+  margin-left: 20rpx;
+}
+
+.doing_end_wrapper {
+  margin-top: 15rpx;
+}
+
+.finished_time_wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 0 40rpx;
+  font-size: 34rpx;
+  color: #666;
+  margin-bottom: 20rpx;
+  margin-top: 10rpx;
+}
+.consume_wrapper {
+  margin-top: 10rpx;
 }

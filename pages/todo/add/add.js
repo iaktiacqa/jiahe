@@ -6,14 +6,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-    id: 1,
+    canUpdate: true,
+    action: 1, /** 操作类型 1-增加；2-修改 */
+    id: 0,
     name: '',
     desc: '',
     gender: "2", /** 任务等级 1-紧急；2-优先；3-普通*/
     taskType: "1", /**任务类型，1-定时任务；2-每天任务 */
     finishedDate: '',
     finishedTime: '23:59',
-    finshed: 0,
+    finished: 0,
     status: 0, /** 状态，1-待完成；2-进行中；3-已完成；*/
     genderArr: [
       { gender: 1, value: '紧急' },
@@ -59,22 +61,75 @@ Page({
   },
   selectedFinished: function (e) {
     this.setData({
-      finshed: e.detail.value
+      finished: e.detail.value
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.taskid)
+    var action = options.action;
+    if (action == 'add') {
+      var date = new Date();
+      var mon = date.getMonth() + 1;
+      var day = date.getDate();
+      var nowDay = date.getFullYear() + "-" + (mon < 10 ? "0" + mon : mon) + "-" + (day < 10 ? "0" + day : day);
+      this.setData({
+        action: 1,
+        finishedDate: nowDay
+      })
+    } else {
+      var taskId = options.taskid;
+      var task;
+      var taskData = wx.getStorageSync("taskData");
+      if (taskData) {
+        var finishingList = taskData.finishingList;
+        var todoList = taskData.todoList;
+        var finishedList = taskData.finishedList;
+        if (finishingList) {
+          for (var i = 0; i < finishingList.length; i++) {
+            if (taskId == finishingList[i].id) {
+              task = finishingList[i];
+              break;
+            }
+          }
+        }
+        if (todoList && !task) {
+          for (var i = 0; i < todoList.length; i++) {
+            if (taskId == todoList[i].id) {
+              task = todoList[i];
+              break;
+            }
+          }
+        }
+        if (finishedList && !task) {
+          for (var i = 0; i < finishedList.length; i++) {
+            if (taskId == finishedList[i].id) {
+              task = finishedList[i];
+              break;
+            }
+          }
+        }
+      }
+      if (task.status == 3) {
+        this.setData({
+          canUpdate: false
+        })
+      }
+      this.setData({
+        action: 2,
+        id: task.id,
+        name: task.name,
+        desc: task.desc,
+        gender: task.gender,
+        taskType: task.taskType,
+        finishedDate: task.finishedDate,
+        finishedTime: task.finishedTime,
+        finished: task.finished,
+        status: task.status
+      })
+    }
 
-    var date = new Date();
-    var mon = date.getMonth() + 1;
-    var day = date.getDate();
-    var nowDay = date.getFullYear() + "-" + (mon < 10 ? "0" + mon : mon) + "-" + (day < 10 ? "0" + day : day);
-    this.setData({
-      finishedDate: nowDay
-    })
   },
   submitTask: function (e) {
     console.log('提交任务')
@@ -97,22 +152,41 @@ Page({
     var finishingList = data.finishingList;
     var finishedList = data.finishedList;
     if (!todoList) {
-      todoList=[];
+      todoList = [];
     }
-    var id = todoList.length + finishingList.length +  finishedList.length + 1;
-    var task = {
-      id: id,
-      name: this.data.name,
-      desc: this.data.desc,
-      gender: this.data.gender,
-      taskType: this.data.taskType,
-      finishedDate: this.data.finishedDate,
-      finishedTime: this.data.finishedTime,
-      finshed: this.data.finshed,
-      status: 1
-    };
-    
-    todoList.push(task);
+    var task;
+    for (var i = 0; i < todoList.length; i++) {
+      if (this.data.id == todoList[i].id) {
+        task = todoList[i];
+        todoList.splice(i, 1);
+        break;
+      }
+    }
+
+    if (task) {
+      task['name'] = this.data.name,
+        task['desc'] = this.data.desc,
+        task['gender'] = this.data.gender,
+        task['taskType'] = this.data.taskType,
+        task['finishedDate'] = this.data.finishedDate,
+        task['finishedTime'] = this.data.finishedTime,
+        task['finished'] = this.data.finished,
+        task['status'] = 1
+    } else {
+      var id = todoList.length + finishingList.length + finishedList.length + 1;
+      task = {
+        id: id,
+        name: this.data.name,
+        desc: this.data.desc,
+        gender: this.data.gender,
+        taskType: this.data.taskType,
+        finishedDate: this.data.finishedDate,
+        finishedTime: this.data.finishedTime,
+        finished: this.data.finished,
+        status: 1
+      };
+    }
+    todoList.unshift(task);
     data['todoList'] = todoList;
     // 保存到本地
     wx.setStorageSync('taskData', data);

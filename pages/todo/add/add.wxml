@@ -1,30 +1,30 @@
 <!--pages/todo/add/add.wxml-->
-<view class="add_view">
-  <view class="task_name_wrapper">
+<view class="add_view" >
+  <view class="task_name_wrapper"  >
     <text class="task_name_title">名称：</text>
-    <input class="task_name" bindinput='bindName' placeholder='请输入任务名称(必填)' />
+    <input class="task_name" disabled="{{!canUpdate}}" bindinput='bindName' placeholder='请输入任务名称(必填)' value="{{name}}"/>
   </view>
   <view class="hor_line" />
   <view class="task_desc_wrapper">
     <text class="task_desc_title">描述：</text>
-    <textarea auto-height bindinput="bindDesc" class="task_desc" show-confirm-bar="{{true}}" placeholder='请输入描述(选填)' />
+    <textarea auto-height bindinput="bindDesc" class="task_desc" show-confirm-bar="{{true}}" placeholder='请输入描述(选填)' value="{{desc}}" disabled="{{!canUpdate}}"/>
   </view>
   <view class="hor_line" />
   <radio-group class="gender_wrapper" bindchange="selectGender">
     <label class="radio" wx:for="{{genderArr}}">
-      <radio value="{{item.gender}}" checked="{{item.checked}}" />{{item.value}}
+      <radio value="{{item.gender}}" checked="{{item.gender == gender}}"  disabled="{{!canUpdate}}"/>{{item.value}}
     </label>
   </radio-group>
   <view class="hor_line" />
   <view class="task_type_wrapper">
     <radio-group class="task_type" bindchange="selectTaskType">
       <label class="radio" wx:for="{{typeArr}}">
-        <radio value="{{item.type}}" checked="{{item.checked}}" />{{item.value}}
+        <radio value="{{item.type}}" checked="{{item.type == taskType}}"  disabled="{{!canUpdate}}"/>{{item.value}}
       </label>
     </radio-group>
     <view class="finished_time_wrapper" wx:if="{{taskType==1}}">
       <view class="section">
-        <picker mode="date" value="{{finishedDate}}" start="2018-01-01" end="2020-01-01" bindchange="bindDateChange">
+        <picker mode="date" value="{{finishedDate}}" start="2018-01-01" end="2020-01-01" bindchange="bindDateChange"  disabled="{{!canUpdate}}">
           <view class="picker">
             <text class="date_title">日期: </text>
             <text class="finished_date">{{finishedDate}}</text>
@@ -32,7 +32,7 @@
         </picker>
       </view>
       <view class="section">
-        <picker mode="time" value="{{finishedTime}}" start="00:00" end="23:59" bindchange="bindTimeChange">
+        <picker mode="time" value="{{finishedTime}}" start="00:00" end="23:59" bindchange="bindTimeChange"  disabled="{{!canUpdate}}">
           <view class="picker">
             <text class="time_title">时间:  </text>
             <text class="finished_time">{{finishedTime}}</text>
@@ -44,8 +44,8 @@
   <view class="hor_line" />
   <view class="finished_wrapper">
     <text class="finished_title">已完成:</text>
-    <slider bindchange="selectedFinished" min='0' max='100' step='10' show-value/>
+    <slider bindchange="selectedFinished" min='0' max='100' step='10'  value="{{finished}}" show-value  disabled="{{!canUpdate}}"/>
   </view>
   <view class="hor_line" />
-  <button class="submit_btn" bindtap='submitTask' type="primary" > 提 交 </button>
+  <button class="submit_btn" bindtap='submitTask' type="primary"  disabled="{{!canUpdate}}"> 提 交 </button>
 </view>
