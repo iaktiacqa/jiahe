@@ -9,7 +9,7 @@
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#CB0D39",
-    "navigationBarTitleText": "家和万事兴！",
+    "navigationBarTitleText": "家和万事兴",
     "navigationBarTextStyle":"white"
   },
   "tabBar": {
@@ -18,21 +18,15 @@
     "list": [
       {
         "pagePath": "pages/date/date",
-        "text": "日历",
-        "iconPath": "/images/yuedu.png",
-        "selectedIconPath": "/images/yuedu_hl.png"
+        "text": "日历"
       },
       {
         "pagePath": "pages/todo/todo",
-        "text": "todo",
-        "iconPath": "/images/yuedu.png",
-        "selectedIconPath": "/images/yuedu_hl.png"
+        "text": "todo"
       },
       {
         "pagePath": "pages/usercenter/usercenter",
-        "text": "个人",
-        "iconPath": "/images/dianying.png",
-        "selectedIconPath": "/images/dianying_hl.png"
+        "text": "个人"
       }
     ]
   }

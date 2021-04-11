@@ -26,3 +26,8 @@
     margin-top: 17rpx;
     color: white;
 }
+.class_introduce {
+  font-size: 34rpx;
+  padding: 30rpx;
+  color: #999;
+}

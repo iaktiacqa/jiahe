@@ -240,56 +240,56 @@ Page({
    */
   hasBirthday: function (ylmonth, ylday) {
     var birthdayArr = [
-      {
-        'month': 12,
-        'date': 11,
-        'isYinLi': true,
-        'name': '唐江玲',
-        'nickname': '姐',
-        'avatar': '/images/jiejie.jpg',
-        'phone': '18075778126',
-        'jiyu': '当然是越来越美啰！'
-      },
-      {
-        'month': 3,
-        'date': 12,
-        'isYinLi': true,
-        'name': '唐国元',
-        'nickname': '爸',
-        'avatar': '/images/ba.jpg',
-        'phone': '17707737661',
-        'jiyu':'祝爸爸身体健康！'
-      },
-      {
-        'month': 9,
-        'date': 4,
-        'isYinLi': true,
-        'name': '唐仕云',
-        'nickname': '妈',
-        'avatar': '/images/ma.jpg',
-        'phone': '15878351921',
-        'jiyu': '祝妈妈身体健康！'
-      },
-      {
-        'month': 8,
-        'date': 4,
-        'isYinLi': true,
-        'name': '唐江旭',
-        'nickname': '我',
-        'avatar': '/images/wo.jpg',
-        'phone': '15021016721',
-        'jiyu': '我自己还没想好！'
-      },
-      {
-        'month': 3,
-        'date': 10,
-        'isYinLi': true,
-        'name': '罗艳文',
-        'nickname': '姐夫',
-        'avatar': '/images/jiefu.jpg',
-        'phone': '17358806816',
-        'jiyu': '祝财源滚进！'
-      }
+      // {
+      //   'month': 12,
+      //   'date': 11,
+      //   'isYinLi': true,
+      //   'name': '唐江玲',
+      //   'nickname': '姐',
+      //   'avatar': '/images/jiejie.jpg',
+      //   'phone': '18075778126',
+      //   'jiyu': '当然是越来越美啰！'
+      // },
+      // {
+      //   'month': 3,
+      //   'date': 12,
+      //   'isYinLi': true,
+      //   'name': '唐国元',
+      //   'nickname': '爸',
+      //   'avatar': '/images/ba.jpg',
+      //   'phone': '17707737661',
+      //   'jiyu':'祝爸爸身体健康！'
+      // },
+      // {
+      //   'month': 9,
+      //   'date': 4,
+      //   'isYinLi': true,
+      //   'name': '唐仕云',
+      //   'nickname': '妈',
+      //   'avatar': '/images/ma.jpg',
+      //   'phone': '15878351921',
+      //   'jiyu': '祝妈妈身体健康！'
+      // },
+      // {
+      //   'month': 8,
+      //   'date': 4,
+      //   'isYinLi': true,
+      //   'name': '唐江旭',
+      //   'nickname': '我',
+      //   'avatar': '/images/wo.jpg',
+      //   'phone': '15021016721',
+      //   'jiyu': '我自己还没想好！'
+      // },
+      // {
+      //   'month': 3,
+      //   'date': 10,
+      //   'isYinLi': true,
+      //   'name': '罗艳文',
+      //   'nickname': '姐夫',
+      //   'avatar': '/images/jiefu.jpg',
+      //   'phone': '17358806816',
+      //   'jiyu': '祝财源滚进！'
+      // }
 
     ];
     var monthArr = ['正月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '冬月', '腊月'];

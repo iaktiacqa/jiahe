@@ -16,7 +16,7 @@
         <text class="no_task">没有待完成的任务，快去创建吧！</text>
       </view>
       <scroll-view scroll-y class="task_scroll_view" style="height:{{scrollviewHeight + 'px'}}">
-        <view wx:for="{{taskData.todoList}}" wx:for-item="task" bindtap='goDetail' data-task-id="{{task.id}}">
+        <view wx:for="{{taskData.todoList}}" wx:for-item="task" bindtap='goDetail' data-task-id="{{task.id}}" data-task-status="{{task.status}}">
           <template is="taskItem" data="{{...task}}" />
         </view>
       </scroll-view>
@@ -27,7 +27,7 @@
         <text class="no_task">没有进行中的任务，先去开始吧！</text>
       </view>
       <scroll-view scroll-y class="task_scroll_view" style="height:{{scrollviewHeight + 'px'}}">
-        <view wx:for="{{taskData.finishingList}}" wx:for-item="task" bindtap='goDetail' data-task-id="{{task.id}}">
+        <view wx:for="{{taskData.finishingList}}" wx:for-item="task" bindtap='goDetail' data-task-id="{{task.id}}" data-task-status="{{task.status}}">
           <template is="taskItem" data="{{...task}}" />
         </view>
       </scroll-view>
@@ -39,7 +39,7 @@
         <text class="no_task">没有已完成的任务，快去完成吧！</text>
       </view>
       <scroll-view scroll-y class="task_scroll_view" style="height:{{scrollviewHeight + 'px'}}">
-        <view wx:for="{{taskData.finishedList}}" wx:for-item="task" bindtap='goDetail' data-task-id="{{task.id}}">
+        <view wx:for="{{taskData.finishedList}}" wx:for-item="task" bindtap='goDetail' data-task-id="{{task.id}}" data-task-status="{{task.status}}">
           <template is="taskItem" data="{{...task}}" />
         </view>
       </scroll-view>

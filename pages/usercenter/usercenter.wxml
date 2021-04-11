@@ -4,4 +4,7 @@
         <image src="{{userInfo.avatarUrl}}" class="user_avatar"/>
         <text wx:if="{{false}}" class="wx_phone">15021016721</text>
     </view>
+    <view class="class_introduce">
+      <text class="introece">目前所有数据为本地数据，请不要删除小程序，否则本地数据会丢失！</text>
+    </view>
 </view>

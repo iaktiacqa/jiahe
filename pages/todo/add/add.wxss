@@ -119,3 +119,16 @@
   width: 100%;
   background: rgb(180, 180, 180);
 }
+
+.score_wrapper {
+  margin-top: 40rpx;
+}
+
+.score_title {
+  color: #fc4545;
+}
+
+.score {
+  font-size: 40rpx;
+  border-bottom: 1rpx rgb(180, 180, 180) solid;
+}

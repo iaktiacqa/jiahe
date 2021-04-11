@@ -1,4 +1,5 @@
 // pages/todo/todo.js
+const util = require('../../utils/util.js')
 var app = getApp();
 Page({
 
@@ -7,9 +8,8 @@ Page({
    */
   data: {
     scrollviewHeight: 0,
-    curStatus: 1,
+    curStatus: 2,
     taskData: {},
-    text: 'test',
     statusArr: [
       {
         type: 1,
@@ -42,21 +42,33 @@ Page({
   onLoad: function (options) {
     var that = this;
     wx.getSystemInfo({
-      success: function(res) {
+      success: function (res) {
         var windowHeight = res.windowHeight;
         var windowWidth = res.windowWidth;
-        console.log(windowHeight + ' - ' + windowWidth)
         that.setData({
           scrollviewHeight: windowHeight - 84 * windowWidth / 750.0
         })
-        console.log(that.data.scrollviewHeight);
       },
     })
     var taskData = wx.getStorageSync('taskData');
+    if (taskData) {
+      if (taskData.finishingList && taskData.finishingList.length > 0) {
+        this.setData({
+          curStatus: 2
+        })
+      } else {
+        this.setData({
+          curStatus: 1
+        })
+      }
+    } else {
+      this.setData({
+        curStatus: 1
+      })
+    }
     this.setData({
       taskData: taskData
     });
-    //console.log(taskData);
   },
   onShow: function (options) {
     if (app.globalData.todoNeedRefreshData) {
@@ -100,11 +112,23 @@ Page({
     }
     taskData['todoList'] = todoList;
     task['status'] = 2;
+    task['startDate'] = util.getDateStr();
+    task['startTime'] = util.getTimeStr();
     var finishingList = this.data.taskData.finishingList;
     if (!finishingList) {
       finishingList = [];
     }
-    finishingList.push(task);
+    var index = 0;
+    for (var i = 0; i < finishingList.length; i++) {
+      if (task.gender <= finishingList[i].gender) {
+        index = i;
+        break;
+      }
+    }
+    if (i == finishingList.length) {
+      index = i;
+    }
+    finishingList.splice(index, 0, task);
     taskData['finishingList'] = finishingList;
     wx.setStorageSync("taskData", taskData)
     this.setData({
@@ -126,11 +150,15 @@ Page({
     }
     taskData['finishingList'] = finishingList;
     task['status'] = 3;
+    task['finishedDate'] = util.getDateStr();
+    task['finishedTime'] = util.getTimeStr();
+    task['finished'] = 100;
+    task['cosumeTime'] = util.getDistanceStr(task.startDate + " " + task.startTime + ":00");
     var finishedList = this.data.taskData.finishedList;
     if (!finishedList) {
       finishedList = [];
     }
-    finishedList.push(task);
+    finishedList.unshift(task);
     taskData['finishedList'] = finishedList;
     wx.setStorageSync("taskData", taskData)
     this.setData({
@@ -148,9 +176,10 @@ Page({
   },
   goDetail: function (event) {
     var taskId = event.currentTarget.dataset.taskId;
+    var taskStatus = event.currentTarget.dataset.taskStatus;
     wx.navigateTo({
-      url: '/pages/todo/add/add?taskid=' + taskId,
+      url: '/pages/todo/add/add?action=update&taskid=' + taskId + '&taskstatus=' + taskStatus,
     })
-    console.log('taskId:' + taskId);
+    console.log('taskId:' + taskId + ',taskStatus:' + taskStatus);
   }
 })

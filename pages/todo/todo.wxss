@@ -48,7 +48,7 @@
 }
 
 .select-status-wrapper {
-  border-bottom: #148af7 1px solid;
+  border-bottom: #1aad19 1px solid;
 }
 .status_tab {
   display: flex;
@@ -57,7 +57,7 @@
   align-items: center;
 }
 .select-status {
-  color: #148af7;
+  color: #1aad19;
 }
 
 .task_swiper {

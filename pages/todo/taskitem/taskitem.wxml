@@ -10,26 +10,27 @@
       </view>
       <text class="start_task" wx:if="{{status==1}}" catchtap='startTask' data-task-id="{{id}}">开始</text>
       <text class="start_task" wx:elif="{{status==2}}" catchtap='finishedTask' data-task-id="{{id}}">完成</text>
-      <text class="score" wx:elif="{{status==3}}">100</text>
+      <text class="score" wx:elif="{{status==3 && score}}">{{score}}</text>
+      <text class="please_score" wx:elif="{{status==3 && !score}}">可进详情评分</text>
     </view>
     <view wx:if="{{status==1}}" class="time_and_finished_wrapper">
      <text>截止时间：</text>
-      <text class="finished_date" wx:if="{{taskType==1}}">{{finishedDate}}</text>
+      <text class="finished_date" wx:if="{{taskType==1}}">{{stopDate}}</text>
       <text class="finished_date" wx:elif="{{taskType==2}}">每天任务</text>
-      <text class="finished_time">{{finishedTime}}</text>
+      <text class="finished_time">{{stopTime}}</text>
     </view>
     <view wx:elif="{{status==2}}" class="doing_time_and_finished_wrapper">
       <view class="doing_start_wrapper">
         <text>开始时间：</text>
-        <text class="start_date" wx:if="{{taskType==1}}">{{finishedDate}}</text>
+        <text class="start_date" wx:if="{{taskType==1}}">{{startDate}}</text>
         <text class="start_date" wx:elif="{{taskType==2}}">每天任务</text>
-        <text class="start_time">{{finishedTime}}</text>
+        <text class="start_time">{{startTime}}</text>
       </view>
       <view class="doing_end_wrapper">
         <text>截止时间：</text>
-        <text class="finished_date" wx:if="{{taskType==1}}">{{finishedDate}}</text>
+        <text class="finished_date" wx:if="{{taskType==1}}">{{stopDate}}</text>
         <text class="finished_date" wx:elif="{{taskType==2}}">每天任务</text>
-        <text class="finished_time">{{finishedTime}}</text>
+        <text class="finished_time">{{stopTime}}</text>
       </view>
       <view class="finished_wrapper">
         <progress percent="{{finished}}" show-info />
@@ -43,7 +44,7 @@
         <text class="finished_time">{{finishedTime}}</text>
       </view>
       <view class="consume_wrapper">
-        <text class="consume">耗时：4天6小时</text>
+        <text class="consume">耗时：{{cosumeTime}}</text>
       </view>
     </view>
 
